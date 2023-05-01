@@ -127,7 +127,7 @@ public class DialogManager : MonoBehaviour
         }
         if (TextOut.text == "Семенов, ну это просто смешно. Какие крестики-нолики? Я кандидат наук, ты меня ни за что не выиграешь. Давай сыграем.")
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(5);
         }
     }
 

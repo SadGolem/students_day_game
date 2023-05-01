@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class trigger : MonoBehaviour
+public class trigger_glass : MonoBehaviour
 {
     public void Trigger()
     {
-        Debug.Log("aaaaaaaaa");
+        FindObjectOfType<dialogManager>().StartDialogue();
     }
 }
