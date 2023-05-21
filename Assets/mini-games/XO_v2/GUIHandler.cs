@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class GUIHandler : MonoBehaviour
 {
@@ -40,10 +40,17 @@ public class GUIHandler : MonoBehaviour
 		private BoardManager board;
 
 		private AIPlayer aiPlayer;
-		public Text counter1;
-		public Text counter2;
-	public int pl1 = 0;
+
+		public TextMeshProUGUI counter1;
+        public TextMeshProUGUI counter2;
+		public Text counter1_text;
+		public Text counter2_text;
+
+    public int pl1 = 0;
 	public int pl2 = 0;
+	public static int i = 0;
+    public static int j = 0;
+	
 
     private bool suspendInteractions = false;		// set to true during game-over animations to prevent access to buttons.
 
@@ -117,11 +124,17 @@ public class GUIHandler : MonoBehaviour
 						// find out who was playing as "X"...
 						playerNum = (p1Piece == pieces.X) ? GameInfo._PLAYER1 : GameInfo._PLAYER2;
 						pl1++;
+						i = pl1;
+						j = pl2;
+            counter1_text.text.ToString();
 						counter1.text = "Счёт: " + pl1.ToString();
 				} else {
 						// looks like "O" won...
 						playerNum = (p1Piece == pieces.O) ? GameInfo._PLAYER1 : GameInfo._PLAYER2;
 						pl2++;
+						i = pl1;
+						j = pl2;
+						counter1_text.text = pl2.ToString();
 						counter2.text = "Счёт: " + pl2.ToString();
 
                 }
@@ -140,6 +153,8 @@ public class GUIHandler : MonoBehaviour
 
 				if (pl1 == 3)
 				{
+					i = pl1;
+					j = pl2;
 					SceneManager.LoadScene(3);
 				}
 		
@@ -187,11 +202,18 @@ public class GUIHandler : MonoBehaviour
 				txt_Draw.gameObject.SetActive (false);
 				suspendInteractions = false;		// Animation is done; re-enable the GUI.
 		}
-	
 
+	public int Player
+	{
+		get { return i=0; }
+	}
 
+    public int Teacher
+    {
+        get { return j=0; }
+    }
 
-		public void NextTurn ()
+    public void NextTurn ()
 		{
 				// swap current player over.
 				if (gInfo.state != GameInfo.GameStates.inGUI)

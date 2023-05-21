@@ -7,7 +7,12 @@ public class menustart : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (PlayerPrefs.GetInt("levelScene") == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+            SceneManager.LoadScene(PlayerPrefs.GetInt("levelScene"));
     }
 
     public void Exit()
